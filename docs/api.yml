@@ -5,9 +5,14 @@ info:
   description: STD21099
 servers:
   - url: https://library.com
+tags:
+  - name: Books
+  - name: Author
 paths:
   /books:
     get:
+      tags:
+        - "Books"
       summary: Get all books
       description: The returned books are ordered by updated datetime.
       operationId: getBooks
@@ -29,6 +34,8 @@ paths:
                 items:
                   $ref: '#/components/schemas/Book'
     put:
+      tags:
+        - "Books"
       summary: Create or update a list of books
       operationId: crupdateBooks
       requestBody:
@@ -50,6 +57,8 @@ paths:
   /authors:
   #TODO2: complete GET (can be filtered by name) - PUT - DELETE
     get:
+      tags:
+        - "Author"
       summary: Get all authors
       description: The returned authors are ordered by name.
       operationId: getAuthors
@@ -70,6 +79,8 @@ paths:
                 items:
                   $ref: '#/components/schemas/Author'
     put:
+      tags:
+        - "Author"
       summary: Create or update a list of authors
       operationId: crupdateAuthors
       requestBody:
@@ -89,6 +100,8 @@ paths:
                 items:
                   $ref: '#/components/schemas/Author'
     delete:
+      tags:
+        - "Author"
       summary: Remove a author by id
       operationId: deleteAuthor
       parameters:
