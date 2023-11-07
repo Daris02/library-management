@@ -195,26 +195,14 @@ components:
 
     Book:
       type: object
-      properties:
-        id:
-          type: string
-        bookName:
-          type: string
-        author:
-          #TODO1: set it as a component with properties : id, name, sex (M or F)
-          allOf:
-            - $ref: '#/components/schemas/Author' 
-        pageNumbers:
-          type: integer
-        topic:
-          type: string
-          enum:
-            - ROMANCE
-            - COMEDY
-            - OTHER
-        releaseDate:
-          type: string
-          format: date
+      allOf:
+        - properties:
+            id:
+              type: string
+            author:
+              allOf:
+                - $ref: '#/components/schemas/Author'
+        - $ref: '#/components/schemas/CrupdateBook'
 
     Author:
       type: object
