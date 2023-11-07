@@ -146,6 +146,7 @@ paths:
               schema:
                 type: string
                 example: 'The author whit id = 1 is removed successfully'
+  
   /books/{bookId}/authors/{authorId}:
     put:
       tags:
@@ -167,12 +168,37 @@ paths:
             type: string
       responses:
         200:
-          description: The book have author
+          description: The updated book
           content:
             application/json:
               schema:
                 type: object
                 $ref: '#/components/schemas/Book'
+
+  /books/authors:
+    put:
+      tags:
+        - Books
+      summary: Modify author for a book by Id
+      operationId: updateBooks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  bookId:
+                    type: string
+                  authorId: 
+                    type: string
+                required:
+                  - "bookId"
+                  - "authorId"
+      responses:
+        200:
+          description: The updated book with author
   
 components:
   schemas:
@@ -215,3 +241,14 @@ components:
         sex:
           type: string
           example: M
+    
+    UpdateBookAuthor:
+      type: object
+      properties:
+        bookId:
+          type: string
+        authorId: 
+          type: string
+      required:
+        - "bookId"
+        - "authorId"
