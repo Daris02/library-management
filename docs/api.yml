@@ -59,6 +59,8 @@ paths:
               schema:
                 type: object
                 $ref: '#/components/schemas/Book'
+
+  /books/{bookId}:
     delete:
       tags:
         - "Books"
@@ -66,7 +68,7 @@ paths:
       description: The returned confirmation if book delete.
       operationId: getBooks
       parameters:
-        - in: query
+        - in: path
           name: id
           description: remove book by given id
           required: true
@@ -126,6 +128,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Author'
+
+  /authors/{authorId}:
     delete:
       tags:
         - "Author"
@@ -238,6 +242,7 @@ components:
           example: John Doe
         sex:
           $ref: '#/components/schemas/Sex'
+
     Sex:
       type: string
       enum:
