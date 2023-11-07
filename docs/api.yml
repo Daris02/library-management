@@ -59,6 +59,27 @@ paths:
               schema:
                 type: object
                 $ref: '#/components/schemas/Book'
+    delete:
+      tags:
+        - "Books"
+      summary: Remove a book by id
+      description: The returned confirmation if book delete.
+      operationId: getBooks
+      parameters:
+        - in: query
+          name: id
+          description: remove book by given id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Confirmation the book is delete.
+          content:
+            application/txt:
+              schema:
+                type: string
+                example: 'The book whit id=1 is removed successfully'
                 
   /authors:
   #TODO2: complete GET (can be filtered by name) - PUT - DELETE
