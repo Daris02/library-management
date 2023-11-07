@@ -237,8 +237,12 @@ components:
           type: string
           example: John Doe
         sex:
-          type: string
-          example: M
+          $ref: '#/components/schemas/Sex'
+    Sex:
+      type: string
+      enum:
+        - M
+        - F
     
     UpdateBookAuthor:
       type: object
