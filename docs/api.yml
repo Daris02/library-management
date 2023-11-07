@@ -26,11 +26,10 @@ paths:
         #TODO3: add parameter to filter books by intervals of dates of the releaseDate       
         - in: query
           name: releaseDate
-          description: Filter books by intervals of dates of the releaseDate
           required: false
           schema:
             type: string
-            example: '10/10/2023-10/11/2023'
+            format: date
       responses:
         200:
           description: The list of filtered books
