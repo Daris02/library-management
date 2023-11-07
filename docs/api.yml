@@ -50,7 +50,7 @@ paths:
           application/json:
             schema:
               type: object
-              $ref: '#/components/schemas/CreateBook'
+              $ref: '#/components/schemas/CrupdateBook'
       responses:
         200:
           description: The list of created or updated books
@@ -149,7 +149,7 @@ paths:
 
 components:
   schemas:
-    CreateBook:
+    CrupdateBook:
       type: object
       properties:
         bookName:
