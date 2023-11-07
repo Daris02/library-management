@@ -49,18 +49,17 @@ paths:
         content:
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/CreateBook'
+              type: object
+              $ref: '#/components/schemas/CreateBook'
       responses:
         200:
           description: The list of created or updated books
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
+                type: object
+                $ref: '#/components/schemas/Book'
+                
   /authors:
   #TODO2: complete GET (can be filtered by name) - PUT - DELETE
     get:
