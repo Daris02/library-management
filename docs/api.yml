@@ -239,6 +239,9 @@ components:
             author:
               allOf:
                 - $ref: '#/components/schemas/Author'
+            topic:
+              allOf:
+                - $ref: '#/components/schemas/Topic'
         - $ref: '#/components/schemas/CrupdateBook'
 
     Author:
