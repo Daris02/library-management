@@ -8,6 +8,7 @@ servers:
 tags:
   - name: Books
   - name: Author
+  - name: Topic
 paths:
   /books:
     get:
@@ -58,16 +59,18 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              $ref: '#/components/schemas/CrupdateBook'
+              type: array
+              items:
+                $ref: '#/components/schemas/CrupdateBook'
       responses:
         200:
           description: The list of created or updated books
           content:
             application/json:
-              schema:
-                type: object
-                $ref: '#/components/schemas/Book'
+              schema: 
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
 
   /books/{bookId}:
     delete:
@@ -153,12 +156,7 @@ paths:
             type: string
       responses:
         200:
-          description: Confirmation that the author is deleted
-          content:
-            application/json:
-              schema:
-                type: string
-                example: 'The author whit id = 1 is removed successfully'
+          description: Author deleted successfully
   
   /books/{bookId}/authors/{authorId}:
     put:
@@ -213,11 +211,85 @@ paths:
         200:
           description: The updated book with author
   
+  /topics:
+    get:
+      tags:
+        - "Topic"
+      summary: Get all topics
+      description: The returned topics are ordered by name.
+      operationId: getTopics
+      parameters:
+        - in: query
+          name: name
+          description: Filter return topic by given name
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: The list of filtered topics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Topic'
+    put:
+      tags:
+        - "Topic"
+      summary: Create or update a list of topic
+      operationId: crupdateTopic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CrupdateTopic'
+      responses:
+        200:
+          description: The list of created or updated topic
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Topic'
+
+  /topics/{topicId}:
+    delete:
+      tags:
+        - "Topic"
+      summary: Remove a topic by id
+      operationId: deleteTopic
+      parameters:
+        - in: path
+          name: id
+          description: Remove topic by given id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Topic deleted successfully
+  
 components:
   schemas:
+    CrupdateTopic:
+      type: object
+      properties:
+        topicName:
+          type: string
+          example: 'Romance'
+
     Topic:
-      type: string
-      example: Romance, Comedy, ...etc
+      type: object
+      allOf:
+        - properties:
+            id:
+              type: string
+        - $ref: '#/components/schemas/CrupdateTopic'
+    
 
     CrupdateBook:
       type: object
