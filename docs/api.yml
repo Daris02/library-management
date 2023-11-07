@@ -158,6 +158,23 @@ paths:
         200:
           description: Author deleted successfully
   
+  /authorTopics:
+    get:
+      tags:
+        - "Author"
+      summary: Get all authorTopics
+      description: The returned authors and list topics.
+      operationId: getAuthorTopics
+      responses:
+        200:
+          description: The list of authors with list topic
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AuthorTopics'
+
   /books/{bookId}/authors/{authorId}:
     put:
       tags:
@@ -252,14 +269,7 @@ paths:
               type: array
               items:
                 type: object
-                properties:
-                  bookId:
-                    type: string
-                  topicId: 
-                    type: string
-                required:
-                  - "bookId"
-                  - "topicId"
+                $ref: '#/components/schemas/UpdateBookTopic'
       responses:
         200:
           description: The updated book with author
@@ -369,12 +379,10 @@ components:
                 - $ref: '#/components/schemas/Topic'
         - $ref: '#/components/schemas/CrupdateBook'
 
-    Author:
+    CrupdateAuthor:
       type: object
       properties:
-        id:
-          type: string
-        name:
+        authorName:
           type: string
           example: John Doe
         sex:
@@ -385,6 +393,14 @@ components:
       enum:
         - M
         - F
+    Author:
+      type: object
+      allOf:
+        - properties:
+            id:
+              type: string
+        - allOf:
+            - $ref: '#/components/schemas/CrupdateAuthor'
     
     UpdateBookAuthor:
       type: object
@@ -396,3 +412,25 @@ components:
       required:
         - "bookId"
         - "authorId"
+
+    UpdateBookTopic:
+      type: object
+      properties:
+        bookId:
+          type: string
+        topicId: 
+          type: string
+      required:
+        - "bookId"
+        - "authorId"
+    
+    AuthorTopics:
+      type: object
+      allOf:
+        - allOf:
+            - $ref: '#/components/schemas/CrupdateAuthor'
+      properties:
+        topic:
+          type: array
+          items:
+            $ref: '#/components/schemas/Topic'
