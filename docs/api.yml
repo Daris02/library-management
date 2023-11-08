@@ -41,8 +41,8 @@ paths:
           schema:
             type: string
             format: date
-        - $ref: '#/components/parameters/queryPage'
-        - $ref: '#/components/parameters/queryPageSize'
+        - $ref: '#/components/parameters/queryPagination'
+        - $ref: '#/components/parameters/pathPagination'
       responses:
         200:
           description: The list of filtered books
@@ -107,8 +107,8 @@ paths:
           required: false
           schema:
             type: string
-        - $ref: '#/components/parameters/queryPage'
-        - $ref: '#/components/parameters/queryPageSize'
+        - $ref: '#/components/parameters/queryPagination'
+        - $ref: '#/components/parameters/pathPagination'
       responses:
         200:
           description: The list of filtered authors
@@ -264,8 +264,8 @@ paths:
           required: false
           schema:
             type: string
-        - $ref: '#/components/parameters/queryPage'
-        - $ref: '#/components/parameters/queryPageSize'
+        - $ref: '#/components/parameters/queryPagination'
+        - $ref: '#/components/parameters/pathPagination'
       responses:
         200:
           description: The list of filtered topics
@@ -427,7 +427,7 @@ components:
       name: pathPagination
       description: Path Pagination Parameters
       in: path
-      required: true
+      required: false
       schema:
         type: object
         properties:
