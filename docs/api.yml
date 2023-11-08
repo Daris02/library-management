@@ -219,15 +219,7 @@ paths:
             schema:
               type: array
               items:
-                type: object
-                properties:
-                  bookId:
-                    type: string
-                  authorId: 
-                    type: string
-                required:
-                  - "bookId"
-                  - "authorId"
+                $ref: '#/components/schemas/UpdateBookAuthor'
       responses:
         200:
           description: Updated books with authors
@@ -391,7 +383,7 @@ components:
         authorName:
           type: string
           example: John Doe
-        sex:
+        authorSex:
           $ref: '#/components/schemas/Sex'
 
     Sex:
@@ -399,6 +391,7 @@ components:
       enum:
         - M
         - F
+
     Author:
       type: object
       allOf:
