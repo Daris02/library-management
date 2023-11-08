@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Library API
-  version: 1.0.0
+  version: 2.0.0
   description: STD21099
 servers:
   - url: https://library.com
@@ -41,8 +41,7 @@ paths:
           schema:
             type: string
             format: date
-        - $ref: '#/components/parameters/Page'
-        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/queryPagination'
       responses:
         200:
           description: The list of filtered books
@@ -107,8 +106,7 @@ paths:
           required: false
           schema:
             type: string
-        - $ref: '#/components/parameters/Page'
-        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/queryPagination'
       responses:
         200:
           description: The list of filtered authors
@@ -192,7 +190,7 @@ paths:
       tags:
         - Books
       summary: Modify authors for a books by Id
-      operationId: updateBooksWithTopics
+      operationId: updateBooksWithAuthors
       requestBody:
         content:
           application/json:
@@ -203,7 +201,12 @@ paths:
       responses:
         200:
           description: Updated books with authors
-  
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/Book'
+
   /books/{bookId}/topics/{topicId}:
     put:
       tags:
@@ -238,7 +241,12 @@ paths:
                 $ref: '#/components/schemas/UpdateBookTopic'
       responses:
         200:
-          description: The updated book with author
+          description: The updated book with topic
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/Book'
 
   /topics:
     get:
@@ -254,8 +262,7 @@ paths:
           required: false
           schema:
             type: string
-        - $ref: '#/components/parameters/Page'
-        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/queryPagination'
       responses:
         200:
           description: The list of filtered topics
@@ -298,7 +305,8 @@ paths:
       responses:
         200:
           description: Topic deleted successfully
-  
+
+
 components:
   schemas:
     CrupdateTopic:
@@ -400,6 +408,18 @@ components:
             $ref: '#/components/schemas/Topic'
 
   parameters:
+    queryPagination:
+      name: queryPagination
+      description: Query Pagination Parameters
+      in: query
+      schema:
+        type: object
+        properties:
+          page:
+            $ref: '#/components/parameters/Page'
+          pageSize:
+            $ref: '#/components/parameters/PageSize'
+
     Page:
       name: page
       description: Page Number for pagination
@@ -416,6 +436,9 @@ components:
         type: integer
         default: 20
       required: false
+
+
+
     BookId:
       in: path
       name: bookId
@@ -423,6 +446,7 @@ components:
       schema:
         type: string
       required: true
+
     AuthorId:
       in: path
       name: authorId
@@ -430,6 +454,7 @@ components:
       schema:
         type: string
       required: true
+
     TopicId:
       in: path
       name: topicId
