@@ -41,6 +41,8 @@ paths:
           schema:
             type: string
             format: date
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
       responses:
         200:
           description: The list of filtered books
@@ -110,6 +112,8 @@ paths:
           required: false
           schema:
             type: string
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
       responses:
         200:
           description: The list of filtered authors
@@ -288,6 +292,8 @@ paths:
           required: false
           schema:
             type: string
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
       responses:
         200:
           description: The list of filtered topics
@@ -434,3 +440,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Topic'
+
+  parameters:
+    Page:
+      name: page
+      description: Page Number for pagination
+      in: query
+      schema:
+        type: integer
+        default: 1
+      required: false
+    PageSize:
+      name: pageSize
+      description: Page size for pagination
+      in: query
+      schema:
+        type: integer
+        default: 20
+      required: false
