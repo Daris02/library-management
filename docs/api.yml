@@ -45,13 +45,14 @@ paths:
         - $ref: '#/components/parameters/pathPagination'
       responses:
         200:
-          description: The list of filtered books
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
+          $ref: '#/components/responses/200Response'
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
+
     put:
       tags:
         - "Books"
@@ -66,13 +67,13 @@ paths:
                 $ref: '#/components/schemas/CrupdateBook'
       responses:
         200:
-          description: The list of created or updated books
-          content:
-            application/json:
-              schema: 
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
+          $ref: '#/components/responses/200Response'
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
 
   /books/{bookId}:
     delete:
@@ -85,12 +86,18 @@ paths:
         - $ref: '#/components/parameters/BookId'
       responses:
         200:
-          description: Confirmation the book is delete.
+          description: Confirmation the book deleted.
           content:
-            application/txt:
+            text/plain:
               schema:
                 type: string
-                example: 'The book whit id=1 is removed successfully'
+                example: 'Book delete successfully'
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
                 
   /authors:
   #TODO2: complete GET (can be filtered by name) - PUT - DELETE
@@ -118,6 +125,13 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Author'
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
+
     put:
       tags:
         - "Author"
@@ -139,6 +153,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Author'
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
 
   /authors/{authorId}:
     delete:
@@ -150,7 +170,18 @@ paths:
         - $ref: '#/components/parameters/AuthorId'
       responses:
         200:
-          description: Author deleted successfully
+          description:  Confirmation the author deleted.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Author delete successfully
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
   
   /authorTopics:
     get:
@@ -168,6 +199,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/AuthorTopics'
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
 
   /books/{bookId}/authors/{authorId}:
     put:
@@ -186,6 +223,12 @@ paths:
               schema:
                 type: object
                 $ref: '#/components/schemas/Book'
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
 
   /books/authors:
     put:
@@ -202,12 +245,13 @@ paths:
                 $ref: '#/components/schemas/UpdateBookAuthor'
       responses:
         200:
-          description: Updated books with authors
-          content:
-            application/json:
-              schema:
-                type: object
-                $ref: '#/components/schemas/Book'
+          $ref: '#/components/responses/200Response'
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
 
   /books/{bookId}/topics/{topicId}:
     put:
@@ -220,12 +264,13 @@ paths:
         - $ref: '#/components/parameters/TopicId'
       responses:
         200:
-          description: Book updated topic
-          content:
-            application/json:
-              schema:
-                type: object
-                $ref: '#/components/schemas/Book'
+          $ref: '#/components/responses/200Response'
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
   
   /books/topics:
     put:
@@ -243,12 +288,13 @@ paths:
                 $ref: '#/components/schemas/UpdateBookTopic'
       responses:
         200:
-          description: The updated book with topic
-          content:
-            application/json:
-              schema:
-                type: object
-                $ref: '#/components/schemas/Book'
+          $ref: '#/components/responses/200Response'
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
 
   /topics:
     get:
@@ -275,6 +321,13 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Topic'
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
+
     put:
       tags:
         - "Topic"
@@ -296,6 +349,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Topic'
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
 
   /topics/{topicId}:
     delete:
@@ -307,7 +366,18 @@ paths:
         - $ref: '#/components/parameters/TopicId'
       responses:
         200:
-          description: Topic deleted successfully
+          description:  Confirmation the topic deleted.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Topic delete successfully
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
 
 
 components:
@@ -409,6 +479,90 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Topic'
+
+  responses:
+    200Response:
+      description: Successfull response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example:  200
+                  message:
+                    type: string
+                    example: Success
+              body:
+                type: array
+                items:
+                  oneOf:
+                  - $ref: '#/components/schemas/Book'
+                  - $ref: '#/components/schemas/Author'
+                  - $ref: '#/components/schemas/Topic'
+
+    400Response:
+      description: Bad request response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 400
+                  message:
+                    type: string
+                    example: Bad Request
+              body:
+                type: string
+                example: "Invalid input"
+
+    403Response:
+      description: Forbidden response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 403
+                  message:
+                    type: string
+                    example: Forbidden
+              body:
+                type: string
+                example: "Access denied"
+
+    500Response:
+      description: Internal Server Error response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 500
+                  message:
+                    type: string
+                    example: Internal Server Error
+              body:
+                type: string
 
   parameters:
     queryPagination:
