@@ -41,7 +41,8 @@ paths:
           schema:
             type: string
             format: date
-        - $ref: '#/components/parameters/queryPagination'
+        - $ref: '#/components/parameters/queryPage'
+        - $ref: '#/components/parameters/queryPageSize'
       responses:
         200:
           description: The list of filtered books
@@ -106,7 +107,8 @@ paths:
           required: false
           schema:
             type: string
-        - $ref: '#/components/parameters/queryPagination'
+        - $ref: '#/components/parameters/queryPage'
+        - $ref: '#/components/parameters/queryPageSize'
       responses:
         200:
           description: The list of filtered authors
@@ -262,7 +264,8 @@ paths:
           required: false
           schema:
             type: string
-        - $ref: '#/components/parameters/queryPagination'
+        - $ref: '#/components/parameters/queryPage'
+        - $ref: '#/components/parameters/queryPageSize'
       responses:
         200:
           description: The list of filtered topics
@@ -416,11 +419,24 @@ components:
         type: object
         properties:
           page:
-            $ref: '#/components/parameters/Page'
+            $ref: '#/components/parameters/queryPage'
           pageSize:
-            $ref: '#/components/parameters/PageSize'
+            $ref: '#/components/parameters/queryPageSize'
 
-    Page:
+    pathPagination:  
+      name: pathPagination
+      description: Path Pagination Parameters
+      in: path
+      required: true
+      schema:
+        type: object
+        properties:
+          page:
+            $ref: '#/components/parameters/pathPage'
+          pageSize:
+            $ref: '#/components/parameters/pathPageSize'
+
+    queryPage:
       name: page
       description: Page Number for pagination
       in: query
@@ -428,7 +444,7 @@ components:
         type: integer
         default: 1
       required: false
-    PageSize:
+    queryPageSize:
       name: pageSize
       description: Page size for pagination
       in: query
@@ -437,7 +453,22 @@ components:
         default: 20
       required: false
 
-
+    pathPage:
+      name: page
+      description: Page Number for pagination
+      in: path
+      schema:
+        type: integer
+        default: 1
+      required: false
+    pathPageSize:
+      name: pageSize
+      description: Page size for pagination
+      in: path
+      schema:
+        type: integer
+        default: 20
+      required: false
 
     BookId:
       in: path
