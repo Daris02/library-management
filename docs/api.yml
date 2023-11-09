@@ -45,10 +45,25 @@ paths:
         - $ref: '#/components/parameters/queryPageSize'
       responses:
         200:
-          allOf:
-          $ref: '#/components/responses/200Response'
-          body:
-            example: '#/components/schemas/Book'
+          description: Success response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                      message:
+                        type: string
+                        example: 'OK'
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Book'
 
         400:
           $ref: '#/components/responses/400Response'
@@ -71,7 +86,25 @@ paths:
                 $ref: '#/components/schemas/ImportBook'
       responses:
         200:
-          $ref: '#/components/responses/200Response'
+          description: Success response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                      message:
+                        type: string
+                        example: 'OK'
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Book'
         400:
           $ref: '#/components/responses/400Response'
         403:
@@ -93,7 +126,25 @@ paths:
                 $ref: '#/components/schemas/CrupdateBook'
       responses:
         200:
-          $ref: '#/components/responses/200Response'
+          description: Success response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                      message:
+                        type: string
+                        example: 'OK'
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Book'
         400:
           $ref: '#/components/responses/400Response'
         403:
@@ -144,13 +195,25 @@ paths:
         - $ref: '#/components/parameters/pathPageSize'
       responses:
         200:
-          $ref: '#/components/responses/200Response'
+          description: Success response
           content:
-            schema:
-              body:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                      message:
+                        type: string
+                        example: 'OK'
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Author'
         400:
           $ref: '#/components/responses/400Response'
         403:
@@ -173,13 +236,25 @@ paths:
                 $ref: '#/components/schemas/ImportAuthor'
       responses:
         200:
-          description: The list of created or updated authors
+          description: Success response
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Author'
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                      message:
+                        type: string
+                        example: 'OK'
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Book'
         400:
           $ref: '#/components/responses/400Response'
         403:
@@ -201,13 +276,25 @@ paths:
                 $ref: '#/components/schemas/Author'
       responses:
         200:
-          description: The list of created or updated authors
+          description: Success response
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Author'
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                      message:
+                        type: string
+                        example: 'OK'
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Book'
         400:
           $ref: '#/components/responses/400Response'
         403:
@@ -247,13 +334,25 @@ paths:
       operationId: getAuthorTopics
       responses:
         200:
-          description: The list of authors with list topic
+          description: Success response
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/AuthorTopics'
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                      message:
+                        type: string
+                        example: 'OK'
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AuthorTopics'
         400:
           $ref: '#/components/responses/400Response'
         403:
@@ -272,12 +371,25 @@ paths:
         - $ref: '#/components/parameters/AuthorId'
       responses:
         200:
-          description: The updated book
+          description: Success response
           content:
             application/json:
               schema:
                 type: object
-                $ref: '#/components/schemas/Book'
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                      message:
+                        type: string
+                        example: 'OK'
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Book'
         400:
           $ref: '#/components/responses/400Response'
         403:
@@ -300,7 +412,25 @@ paths:
                 $ref: '#/components/schemas/UpdateBookAuthor'
       responses:
         200:
-          $ref: '#/components/responses/200Response'
+          description: Success response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                      message:
+                        type: string
+                        example: 'OK'
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Book'
         400:
           $ref: '#/components/responses/400Response'
         403:
@@ -319,7 +449,25 @@ paths:
         - $ref: '#/components/parameters/TopicId'
       responses:
         200:
-          $ref: '#/components/responses/200Response'
+          description: Success response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                      message:
+                        type: string
+                        example: 'OK'
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Book'
         400:
           $ref: '#/components/responses/400Response'
         403:
@@ -343,7 +491,25 @@ paths:
                 $ref: '#/components/schemas/UpdateBookTopic'
       responses:
         200:
-          $ref: '#/components/responses/200Response'
+          description: Success response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                      message:
+                        type: string
+                        example: 'OK'
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Book'
         400:
           $ref: '#/components/responses/400Response'
         403:
@@ -369,13 +535,25 @@ paths:
         - $ref: '#/components/parameters/queryPageSize'
       responses:
         200:
-          description: The list of filtered topics
+          description: Success response
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Topic'
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                      message:
+                        type: string
+                        example: 'OK'
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Topic'
         400:
           $ref: '#/components/responses/400Response'
         403:
@@ -397,13 +575,25 @@ paths:
                 $ref: '#/components/schemas/CrupdateTopic'
       responses:
         200:
-          description: The list of created or updated topic
+          description: Success response
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Topic'
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                      message:
+                        type: string
+                        example: 'OK'
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Topic'
         400:
           $ref: '#/components/responses/400Response'
         403:
@@ -579,7 +769,7 @@ components:
                   message:
                     type: string
               body:
-                type: array
+                type: object
 
     200Response:
       description: Success response
@@ -597,59 +787,37 @@ components:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              status:
-                type: object
-                properties:
-                  code:
-                    type: integer
-                    example: 400
-                  message:
-                    type: string
-                    example: Bad Request
-              body:
-                type: string
-                example: "Invalid input"
+            $ref: '#/components/responses/DefaultResponses'
+          example:
+            status:
+              code: 400
+              message: Bad Request
+            body: "Invalid input"
 
     403Response:
       description: Forbidden response
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              status:
-                type: object
-                properties:
-                  code:
-                    type: integer
-                    example: 403
-                  message:
-                    type: string
-                    example: Forbidden
-              body:
-                type: string
-                example: "Access denied"
+            $ref: '#/components/responses/DefaultResponses'
+          example:
+            status:
+              code: 403
+              message: Forbidden
+            body: "Access denied"
 
     500Response:
       description: Internal Server Error response
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              status:
-                type: object
-                properties:
-                  code:
-                    type: integer
-                    example: 500
-                  message:
-                    type: string
-                    example: Internal Server Error
-              body:
-                type: string
+            $ref: '#/components/responses/DefaultResponses'
+          example:
+            status:
+              code:  500
+              message: Internal Server Error
+            body:
+              type: "Internal Server Error"
 
   parameters:
     queryPagination:
