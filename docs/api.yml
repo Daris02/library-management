@@ -41,8 +41,10 @@ paths:
           schema:
             type: string
             format: date
-        - $ref: '#/components/parameters/queryPagination'
-        - $ref: '#/components/parameters/pathPagination'
+        - $ref: '#/components/parameters/queryPage'
+        - $ref: '#/components/parameters/queryPageSize'
+        - $ref: '#/components/parameters/pathPage'
+        - $ref: '#/components/parameters/pathPageSize'
       responses:
         200:
           $ref: '#/components/responses/200Response'
@@ -136,8 +138,10 @@ paths:
           required: false
           schema:
             type: string
-        - $ref: '#/components/parameters/queryPagination'
-        - $ref: '#/components/parameters/pathPagination'
+        - $ref: '#/components/parameters/queryPage'
+        - $ref: '#/components/parameters/queryPageSize'
+        - $ref: '#/components/parameters/pathPage'
+        - $ref: '#/components/parameters/pathPageSize'
       responses:
         200:
           description: The list of filtered authors
@@ -360,8 +364,10 @@ paths:
           required: false
           schema:
             type: string
-        - $ref: '#/components/parameters/queryPagination'
-        - $ref: '#/components/parameters/pathPagination'
+        - $ref: '#/components/parameters/queryPage'
+        - $ref: '#/components/parameters/queryPageSize'
+        - $ref: '#/components/parameters/pathPage'
+        - $ref: '#/components/parameters/pathPageSize'
       responses:
         200:
           description: The list of filtered topics
