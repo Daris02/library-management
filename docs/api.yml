@@ -43,8 +43,6 @@ paths:
             format: date
         - $ref: '#/components/parameters/queryPage'
         - $ref: '#/components/parameters/queryPageSize'
-        - $ref: '#/components/parameters/pathPage'
-        - $ref: '#/components/parameters/pathPageSize'
       responses:
         200:
           $ref: '#/components/responses/200Response'
@@ -138,8 +136,6 @@ paths:
           required: false
           schema:
             type: string
-        - $ref: '#/components/parameters/queryPage'
-        - $ref: '#/components/parameters/queryPageSize'
         - $ref: '#/components/parameters/pathPage'
         - $ref: '#/components/parameters/pathPageSize'
       responses:
@@ -366,8 +362,6 @@ paths:
             type: string
         - $ref: '#/components/parameters/queryPage'
         - $ref: '#/components/parameters/queryPageSize'
-        - $ref: '#/components/parameters/pathPage'
-        - $ref: '#/components/parameters/pathPageSize'
       responses:
         200:
           description: The list of filtered topics
@@ -688,7 +682,7 @@ components:
       in: query
       schema:
         type: integer
-        default: 20
+        default: 50
       required: false
 
     pathPage:
@@ -705,7 +699,7 @@ components:
       in: path
       schema:
         type: integer
-        default: 20
+        default: 50
       required: false
 
     BookId:
