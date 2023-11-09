@@ -53,6 +53,28 @@ paths:
         500:
           $ref: '#/components/responses/500Response'
 
+    post:
+      tags:
+        - "Books"
+      summary: Create a list of books
+      operationId: importBooks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ImportBook'
+      responses:
+        200:
+          $ref: '#/components/responses/200Response'
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
+
     put:
       tags:
         - "Books"
@@ -119,6 +141,34 @@ paths:
       responses:
         200:
           description: The list of filtered authors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
+
+    post:
+      tags:
+        - "Author"
+      summary: Create a list of authors
+      operationId: importAuthors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ImportAuthor'
+      responses:
+        200:
+          description: The list of created or updated authors
           content:
             application/json:
               schema:
@@ -429,7 +479,7 @@ components:
         authorName:
           type: string
           example: John Doe
-        authorSex:
+        sex:
           $ref: '#/components/schemas/Sex'
 
     Sex:
@@ -479,6 +529,34 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Topic'
+    
+    ImportBook:
+    # bookName, author, pageNumbers, topic, releaseDate, idAuthor
+      type: object
+      properties:
+        bookName:
+          type: string
+        author:
+          type: string
+        pageNumbers:
+          type: integer
+        topic:
+          type: string
+        releaseDate:
+          type: string
+          format: date
+        idAuthor:
+          type: string
+
+    ImportAuthor:
+    # authorName, sex
+      type: object
+      properties:
+        authorName:
+          type: string
+        sex:
+          type: string
+          example: M
 
   responses:
     200Response:
