@@ -58,8 +58,7 @@ paths:
 
     post:
       security:
-        - OAuth2:
-          - admin
+        - library_auth: ["admin"]
       tags:
         - "Books"
       summary: Create a list of books
@@ -83,8 +82,7 @@ paths:
 
     put:
       security:
-        - OAuth2:
-          - admin
+        - library_auth: ["admin"]
       tags:
         - "Books"
       summary: Create or update a list of books
@@ -109,8 +107,7 @@ paths:
   /books/{bookId}:
     delete:
       security:
-        - OAuth2:
-          - admin
+        - library_auth: ["admin"]
       tags:
         - "Books"
       summary: Remove a book by id
@@ -221,8 +218,7 @@ paths:
   /authors:
     post:
       security:
-        - OAuth2:
-          - admin
+        - library_auth: ["admin"]
       tags:
         - "Author"
       summary: Create a list of authors
@@ -246,8 +242,7 @@ paths:
 
     put:
       security:
-        - OAuth2:
-          - admin
+        - library_auth: ["admin"]
       tags:
         - "Author"
       summary: Create or update a list of authors
@@ -272,8 +267,7 @@ paths:
   /authors/{authorId}:
     delete:
       security:
-        - OAuth2:
-          - admin
+        - library_auth: ["admin"]
       tags:
         - "Author"
       summary: Remove a author by id
@@ -315,8 +309,7 @@ paths:
   /books/{bookId}/authors/{authorId}:
     put:
       security:
-        - OAuth2:
-          - admin
+        - library_auth: ["admin"]
       tags:
         - Books
       summary: Modify author for a book by Id
@@ -337,8 +330,7 @@ paths:
   /books/authors:
     put:
       security:
-        - OAuth2:
-          - admin
+        - library_auth: ["admin"]
       tags:
         - Books
       summary: Modify authors for a books by Id
@@ -363,8 +355,7 @@ paths:
   /books/{bookId}/topics/{topicId}:
     put:
       security:
-        - OAuth2:
-          - admin
+        - library_auth: ["admin"]
       tags:
         - Books
       summary: Modify topic for a book by Id
@@ -385,8 +376,7 @@ paths:
   /books/topics:
     put:
       security:
-        - OAuth2:
-          - admin
+        - library_auth: ["admin"]
       tags:
         - Books
       summary: Modify topics for books by Id
@@ -436,8 +426,7 @@ paths:
 
     put:
       security:
-        - OAuth2:
-          - admin
+        - library_auth: ["admin"]
       tags:
         - "Topic"
       summary: Create or update a list of topic
@@ -462,8 +451,7 @@ paths:
   /topics/{topicId}:
     delete:
       security:
-        - OAuth2:
-          - admin
+        - library_auth: ["admin"]
       tags:
         - "Topic"
       summary: Remove a topic by id
@@ -513,8 +501,7 @@ paths:
     
     put:
       security:
-        - OAuth2:
-          - admin
+        - library_auth: ["admin"]
       tags:
         - "Visitor"
       summary: Create or update a list of visitor
@@ -539,8 +526,7 @@ paths:
     
     delete:
       security:
-        - OAuth2:
-          - admin
+        - library_auth: ["admin"]
       tags:
         - "Visitor"
       summary: Remove a visitor by id
@@ -597,8 +583,7 @@ paths:
   /visitors/{visitorId}/book/{bookId}/return:
     post:
       security:
-        - OAuth2:
-          - admin
+        - library_auth: ["admin"]
       tags:
         - Visitor
       summary: Visitor returns a book
