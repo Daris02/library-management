@@ -1092,8 +1092,9 @@ components:
     library_auth:
       type: oauth2
       flows:
-        implicit:
+        authorizationCode:
           authorizationUrl: "https://library.com/oauth/authorize"
+          tokenUrl: https://library.com/oauth/token
           scopes:
             read: read acces to library ressources
             write: write acces to ressources
