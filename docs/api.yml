@@ -9,6 +9,7 @@ tags:
   - name: Books
   - name: Author
   - name: Topic
+  - name: Visitor
 paths:
   /books:
     get:
@@ -332,7 +333,6 @@ paths:
             schema:
               type: array
               items:
-                type: object
                 $ref: '#/components/schemas/UpdateBookTopic'
       responses:
         200:
@@ -408,6 +408,78 @@ paths:
               schema:
                 type: string
                 example: Topic delete successfully
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
+
+  /visitors:
+    get:
+      tags:
+        - "Visitor"
+      summary: Get all visitors
+      description: The returned visitors are ordered by updated datetime.
+      operationId: getVisitors
+      parameters:
+        - in: query
+          name: visitorName
+          description: Filter return visitor by given name
+          required: false
+          schema:
+            type: string
+        - $ref: '#/components/parameters/queryPage'
+        - $ref: '#/components/parameters/queryPageSize'
+      responses:
+        200:
+          $ref: "#/components/responses/200Response_Visitor"
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
+    
+    put:
+      tags:
+        - "Visitor"
+      summary: Get all visitors
+      description: The returned visitors are ordered by updated datetime.
+      operationId: crupdateVisitors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Visitor'
+      responses:
+        200:
+          $ref: "#/components/responses/200Response_Visitor"
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
+    
+    delete:
+      tags:
+        - "Visitor"
+      summary: Get all visitors
+      description: The returned visitors are ordered by updated datetime.
+      operationId: deleteVisitorById
+      parameters:
+        - $ref: '#/components/parameters/VisitorId'
+      responses:
+        200:
+          description:  Confirmation the author deleted.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Author delete successfully
         400:
           $ref: '#/components/responses/400Response'
         403:
@@ -544,6 +616,23 @@ components:
           type: string
           example: M
 
+    CrupdateVisitor:
+      type: object
+      properties:
+        name:
+          type: string
+        reference:
+          type: string
+
+    Visitor:
+      type: object
+      allOf:
+        - properties:
+            id:
+              type: string
+        - allOf:
+            - $ref: '#/components/schemas/CrupdateVisitor'
+
     ResponseStatus_200:
       type: object
       properties:
@@ -598,6 +687,16 @@ components:
               items:
                 $ref: '#/components/schemas/AuthorTopics'
 
+    ListVisitor:
+      allOf:
+        - $ref: '#/components/schemas/ResponseBody_200'
+        - properties:
+            body:
+              type: array
+              items:
+                $ref: '#/components/schemas/Visitor'
+
+
   responses:
     DefaultResponses:
       description: Response
@@ -643,6 +742,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ListTopic'
+
+    200Response_Visitor:
+      description: Success response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ListVisitor'
 
     400Response:
       description: Bad request response
@@ -760,6 +866,14 @@ components:
       in: path
       name: topicId
       description: Id of topic
+      schema:
+        type: string
+      required: true
+      
+    VisitorId:
+      in: path
+      name: authorId
+      description: Id of author
       schema:
         type: string
       required: true
