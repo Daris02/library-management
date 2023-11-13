@@ -25,7 +25,7 @@ paths:
           required: false
           schema:
             type: string
-        #TODO3: add parameter to filter books by intervals of dates of the releaseDate       
+        #TODO3: add parameter to filter books by intervals of dates of the releaseDate
         - in: query
           name: releaseDateMin
           description: |
@@ -55,6 +55,9 @@ paths:
           $ref: '#/components/responses/500Response'
 
     post:
+      security:
+        - OAuth2:
+          - admin
       tags:
         - "Books"
       summary: Create a list of books
@@ -77,6 +80,9 @@ paths:
           $ref: '#/components/responses/500Response'
 
     put:
+      security:
+        - OAuth2:
+          - admin
       tags:
         - "Books"
       summary: Create or update a list of books
@@ -100,6 +106,9 @@ paths:
 
   /books/{bookId}:
     delete:
+      security:
+        - OAuth2:
+          - admin
       tags:
         - "Books"
       summary: Remove a book by id
@@ -115,6 +124,38 @@ paths:
               schema:
                 type: string
                 example: 'Book delete successfully'
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
+  
+  /books/borrowed:
+    get:
+      tags:
+        - Books
+      summary: Get the list of borrowed books
+      operationId: getBorrowedBooks
+      responses:
+        200:
+          $ref: "#/components/responses/200Response_Book"
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
+
+  /books/available:
+    get:
+      tags:
+        - Books
+      summary: Get the list of available book
+      operationId: getAvailableBooks
+      responses:
+        200:
+          $ref: "#/components/responses/200Response_Book"
         400:
           $ref: '#/components/responses/400Response'
         403:
@@ -177,6 +218,9 @@ paths:
 
   /authors:
     post:
+      security:
+        - OAuth2:
+          - admin
       tags:
         - "Author"
       summary: Create a list of authors
@@ -199,6 +243,9 @@ paths:
           $ref: '#/components/responses/500Response'
 
     put:
+      security:
+        - OAuth2:
+          - admin
       tags:
         - "Author"
       summary: Create or update a list of authors
@@ -222,6 +269,9 @@ paths:
 
   /authors/{authorId}:
     delete:
+      security:
+        - OAuth2:
+          - admin
       tags:
         - "Author"
       summary: Remove a author by id
@@ -262,6 +312,9 @@ paths:
 
   /books/{bookId}/authors/{authorId}:
     put:
+      security:
+        - OAuth2:
+          - admin
       tags:
         - Books
       summary: Modify author for a book by Id
@@ -281,6 +334,9 @@ paths:
 
   /books/authors:
     put:
+      security:
+        - OAuth2:
+          - admin
       tags:
         - Books
       summary: Modify authors for a books by Id
@@ -304,6 +360,9 @@ paths:
 
   /books/{bookId}/topics/{topicId}:
     put:
+      security:
+        - OAuth2:
+          - admin
       tags:
         - Books
       summary: Modify topic for a book by Id
@@ -323,6 +382,9 @@ paths:
   
   /books/topics:
     put:
+      security:
+        - OAuth2:
+          - admin
       tags:
         - Books
       summary: Modify topics for books by Id
@@ -371,6 +433,9 @@ paths:
           $ref: '#/components/responses/500Response'
 
     put:
+      security:
+        - OAuth2:
+          - admin
       tags:
         - "Topic"
       summary: Create or update a list of topic
@@ -394,6 +459,9 @@ paths:
 
   /topics/{topicId}:
     delete:
+      security:
+        - OAuth2:
+          - admin
       tags:
         - "Topic"
       summary: Remove a topic by id
@@ -442,9 +510,12 @@ paths:
           $ref: '#/components/responses/500Response'
     
     put:
+      security:
+        - OAuth2:
+          - admin
       tags:
         - "Visitor"
-      summary: Get all visitors
+      summary: Create or update a list of visitor
       description: The returned visitors are ordered by updated datetime.
       operationId: crupdateVisitors
       requestBody:
@@ -465,9 +536,12 @@ paths:
           $ref: '#/components/responses/500Response'
     
     delete:
+      security:
+        - OAuth2:
+          - admin
       tags:
         - "Visitor"
-      summary: Get all visitors
+      summary: Remove a visitor by id
       description: The returned visitors are ordered by updated datetime.
       operationId: deleteVisitorById
       parameters:
@@ -487,9 +561,109 @@ paths:
         500:
           $ref: '#/components/responses/500Response'
 
+  
+  /visitors/{visitorId}/book/{bookId}/borrow:
+    post:
+      security:
+        - OAuth2:
+          - read:profile
+      tags:
+        - Visitor
+      summary: Visitor borrows a book
+      operationId: getBorrowBook
+      parameters:
+        - name: visitorId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: bookId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Book successfully borrowed
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
+
+  /visitors/{visitorId}/book/{bookId}/return:
+    post:
+      security:
+        - OAuth2:
+          - admin
+      tags:
+        - Visitor
+      summary: Visitor returns a book
+      operationId: getReturnBook
+      parameters:
+        - name: visitorId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: bookId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Book successfully returned
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
+
+  
+  /visitors/{visitorId}/activities:
+    get:
+      tags:
+        - Visitor
+      summary: Get visitor activities for specified period
+      operationId: getVisitorActivities
+      parameters:
+        - in: path
+          name: visitorId
+          description: Id of the Visitor
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: dateMin
+          description: |
+            Start date of the period `Activity`
+          required: true
+          schema:
+            type: string
+            format: datetime
+        - in: query
+          name: dateMax
+          description: |
+            End date of the period `Activity`
+          required: true
+          schema:
+            type: string
+            format: datetime
+      responses:
+        200:
+          $ref: "#/components/responses/200Response_VisitorActivity"
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
 
 components:
-  schemas:
+  schemas:    
     CrupdateTopic:
       type: object
       properties:
@@ -633,6 +807,24 @@ components:
         - allOf:
             - $ref: '#/components/schemas/CrupdateVisitor'
 
+    Activity:
+      type: object
+      properties:
+        id:
+          type: string
+        visitorId:
+          type: string
+        bookId:
+          type: string
+        action:
+          type: string
+          enum:
+            - borrow
+            - return
+        timestamp:
+          type: string
+          format: datetime
+    
     ResponseStatus_200:
       type: object
       properties:
@@ -696,6 +888,15 @@ components:
               items:
                 $ref: '#/components/schemas/Visitor'
 
+    ListVisitorActivities:
+      allOf:
+        - $ref: '#/components/schemas/ResponseBody_200'
+        - properties:
+            body:
+              type: array
+              items:
+                $ref: '#/components/schemas/Activity'
+
 
   responses:
     DefaultResponses:
@@ -749,6 +950,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ListVisitor'
+
+    200Response_VisitorActivity:
+      description: Success response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ListVisitorActivities'
 
     400Response:
       description: Bad request response
@@ -872,9 +1080,19 @@ components:
       
     VisitorId:
       in: path
-      name: authorId
-      description: Id of author
+      name: visitorId
+      description: Id of visitor
       schema:
         type: string
       required: true
 
+  securitySchemes:
+    library_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: "https://library.com/oauth/authorize"
+          scopes:
+            read: read acces to library ressources
+            write: write acces to ressources
+            admin: full administrative acces to the library
