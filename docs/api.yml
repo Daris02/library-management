@@ -67,25 +67,7 @@ paths:
                 $ref: '#/components/schemas/ImportBook'
       responses:
         200:
-          description: Success response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: object
-                    properties:
-                      code:
-                        type: integer
-                        example: 200
-                      message:
-                        type: string
-                        example: 'OK'
-                  body:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Book'
+          $ref: "#/components/responses/200Response_Book"
         400:
           $ref: '#/components/responses/400Response'
         403:
@@ -225,25 +207,7 @@ paths:
                 $ref: '#/components/schemas/ImportAuthor'
       responses:
         200:
-          description: Success response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: object
-                    properties:
-                      code:
-                        type: integer
-                        example: 200
-                      message:
-                        type: string
-                        example: 'OK'
-                  body:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Book'
+          $ref: "#/components/responses/200Response_Book"
         400:
           $ref: '#/components/responses/400Response'
         403:
