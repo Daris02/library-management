@@ -2,7 +2,9 @@ openapi: 3.0.3
 info:
   title: Library API
   version: 2.0.0
-  description: STD21099
+  description: |
+    L2 - H1
+    STD21099 ZAFINDRAZA Tsioy Daris Raymond
 servers:
   - url: https://library.com
 tags:
