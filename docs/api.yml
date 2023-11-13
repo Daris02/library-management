@@ -89,25 +89,7 @@ paths:
                 $ref: '#/components/schemas/CrupdateBook'
       responses:
         200:
-          description: Success response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: object
-                    properties:
-                      code:
-                        type: integer
-                        example: 200
-                      message:
-                        type: string
-                        example: 'OK'
-                  body:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Book'
+          $ref: "#/components/responses/200Response_Book"
         400:
           $ref: '#/components/responses/400Response'
         403:
@@ -229,25 +211,7 @@ paths:
                 $ref: '#/components/schemas/Author'
       responses:
         200:
-          description: Success response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: object
-                    properties:
-                      code:
-                        type: integer
-                        example: 200
-                      message:
-                        type: string
-                        example: 'OK'
-                  body:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Book'
+          $ref: "#/components/responses/200Response_Author"
         400:
           $ref: '#/components/responses/400Response'
         403:
@@ -306,25 +270,7 @@ paths:
         - $ref: '#/components/parameters/AuthorId'
       responses:
         200:
-          description: Success response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: object
-                    properties:
-                      code:
-                        type: integer
-                        example: 200
-                      message:
-                        type: string
-                        example: 'OK'
-                  body:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Book'
+          $ref: "#/components/responses/200Response_Author"
         400:
           $ref: '#/components/responses/400Response'
         403:
@@ -347,25 +293,7 @@ paths:
                 $ref: '#/components/schemas/UpdateBookAuthor'
       responses:
         200:
-          description: Success response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: object
-                    properties:
-                      code:
-                        type: integer
-                        example: 200
-                      message:
-                        type: string
-                        example: 'OK'
-                  body:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Book'
+          $ref: "#/components/responses/200Response_Book"
         400:
           $ref: '#/components/responses/400Response'
         403:
@@ -384,25 +312,7 @@ paths:
         - $ref: '#/components/parameters/TopicId'
       responses:
         200:
-          description: Success response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: object
-                    properties:
-                      code:
-                        type: integer
-                        example: 200
-                      message:
-                        type: string
-                        example: 'OK'
-                  body:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Book'
+          $ref: "#/components/responses/200Response_Book"
         400:
           $ref: '#/components/responses/400Response'
         403:
@@ -426,25 +336,7 @@ paths:
                 $ref: '#/components/schemas/UpdateBookTopic'
       responses:
         200:
-          description: Success response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: object
-                    properties:
-                      code:
-                        type: integer
-                        example: 200
-                      message:
-                        type: string
-                        example: 'OK'
-                  body:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Book'
+          $ref: "#/components/responses/200Response_Book"
         400:
           $ref: '#/components/responses/400Response'
         403:
@@ -492,25 +384,7 @@ paths:
                 $ref: '#/components/schemas/CrupdateTopic'
       responses:
         200:
-          description: Success response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: object
-                    properties:
-                      code:
-                        type: integer
-                        example: 200
-                      message:
-                        type: string
-                        example: 'OK'
-                  body:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Topic'
+          $ref: "#/components/responses/200Response_Topic"
         400:
           $ref: '#/components/responses/400Response'
         403:
