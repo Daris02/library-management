@@ -183,7 +183,51 @@ paths:
         - "Author"
       summary: Get all authors
       description: The returned authors are ordered by name.
-      operationId: getAuthors
+      operationId: getAuthorsWithQueryparameters
+      parameters:
+        - in: query
+          name: name
+          description: Filter return author by given name
+          required: false
+          schema:
+            type: string
+        - $ref: '#/components/parameters/queryPage'
+        - $ref: '#/components/parameters/queryPageSize'
+      responses:
+        200:
+          description: Success response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                      message:
+                        type: string
+                        example: 'OK'
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Author'
+        400:
+          $ref: '#/components/responses/400Response'
+        403:
+          $ref: '#/components/responses/403Response'
+        500:
+          $ref: '#/components/responses/500Response'
+                
+  /authors/page/{page}/size/{pageSize}:
+    get:
+      tags:
+        - "Author"
+      summary: Get all authors with path parameters
+      description: The returned authors are ordered by name.
+      operationId: getAuthorsWithPathParamerters
       parameters:
         - in: query
           name: name
