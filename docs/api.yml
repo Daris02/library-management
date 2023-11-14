@@ -5,6 +5,7 @@ info:
   description: |
     L2 - H1
     STD21099 ZAFINDRAZA Tsioy Daris Raymond
+    STD22050 RAMANANTSOA Ando N'irina
 servers:
   - url: https://library.com
 tags:
